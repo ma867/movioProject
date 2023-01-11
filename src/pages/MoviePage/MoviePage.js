@@ -31,7 +31,7 @@ export default function MoviePage({ username, user }) {
       const response = await fetch(`https://mdblist.p.rapidapi.com/?i=${id}`, {
         method: "GET",
         headers: {
-          'X-RapidAPI-Key': '721e6a3327mshe34359d3563d7e7p1f7ccejsn1d1230e5e489',
+          'X-RapidAPI-Key': `${process.env.REACT_APP_IMDB_TOP_TEN_KEY}`,
           'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
         }
       })
@@ -162,7 +162,7 @@ export default function MoviePage({ username, user }) {
                   <div id="general-movie-info">
                     <div id="general-movie-title">
                       <h1>{movie.title}</h1>
-                      <h1>{movie.ratings[5].score}/100</h1>
+                      <h1>{movie.ratings[5].score}<span className='ten-rating'>/100</span></h1>
                     </div>
                     <div id="general-movie-stats">
                       <h2>{movie.year}</h2>
@@ -176,8 +176,8 @@ export default function MoviePage({ username, user }) {
                     <br />
 
                     <div id="ratings">
-                      <h3>{movie.ratings[1].score}/100  Metacritic</h3>
-                      <h3>{movie.ratings[4].score}/100 Rotten Tomatoes</h3>
+                      <h3>{movie.ratings[1].score}<span className='ten-rating'>/100</span> Metacritic</h3>
+                      <h3>{movie.ratings[4].score}<span className='ten-rating'>/100</span> Rotten Tomatoes</h3>
 
                     </div>
 
@@ -220,7 +220,7 @@ export default function MoviePage({ username, user }) {
                   <div key={userReview._id} className="review">
 
                     <div id="left-side">
-                      <h1>{userReview.rating}/<span className='ten-rating'>10</span></h1>
+                      <h1>{userReview.rating}<span className='ten-rating'>/10</span></h1>
 
                     </div>
                     <div id="right-side">
@@ -263,7 +263,7 @@ export default function MoviePage({ username, user }) {
         
                         <div key={review._id} className="review">
                           <div id="left-side">
-                            <h1>{review.rating}/<span className='ten-rating'>10</span></h1>
+                            <h1>{review.rating}<span className='ten-rating'>/10</span></h1>
 
                           </div>
                           <div id="right-side">

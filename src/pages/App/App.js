@@ -1,4 +1,5 @@
 // import './App.css';
+
 import { getUser } from '../../utilities/users-service';
 import MainPage from '../MainPage/MainPage';
 import MoviePage from '../MoviePage/MoviePage';
@@ -23,7 +24,7 @@ function App() {
             const response = await fetch('https://imdb-top-100-movies.p.rapidapi.com/', {
                 method: "GET",
                 headers: {
-                    'X-RapidAPI-Key': '721e6a3327mshe34359d3563d7e7p1f7ccejsn1d1230e5e489',
+                    'X-RapidAPI-Key': `${process.env.REACT_APP_IMDB_TOP_TEN_KEY}`,
                     'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
                 }
             })
@@ -38,15 +39,11 @@ function App() {
 
 
     const getNewMovies = () => {
-        const ids = []
-        const info = []
-
-        let names = []
 
         fetch('https://metacriticapi.p.rapidapi.com/movies/new?filter=date', {
             method: "GET",
             headers: {
-                'X-RapidAPI-Key': '721e6a3327mshe34359d3563d7e7p1f7ccejsn1d1230e5e489',
+                'X-RapidAPI-Key': `${process.env.REACT_APP_IMDB_TOP_TEN_KEY}`,
                 'X-RapidAPI-Host': 'metacriticapi.p.rapidapi.com'
             }
         })
@@ -55,8 +52,6 @@ function App() {
             })
             .then((metacriticData) => {
                 setNewMovies(metacriticData.slice(0, 10))
-       
-           
             })
 
     }

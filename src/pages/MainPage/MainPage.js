@@ -4,7 +4,6 @@ import Footer from '../../components/Footer/Footer';
 import TopTenMovies from '../../components/HomePageComponents/TopTenMovies';
 import EditorsPicks from '../../components/HomePageComponents/EditorsPicks';
 import NewlyReleasedMovies from '../../components/HomePageComponents/NewlyReleasedMovies.js';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Banner from '../../components/HomePageComponents/Banner';
@@ -12,15 +11,15 @@ import Banner from '../../components/HomePageComponents/Banner';
 
 export default function MainPage({ classicMovies, newMovies }) {
 
-  const apiKey = "8ce0c21d";
+
   const [movieTitle, setMovieTitle] = useState('')
   const [foundMovie, setFoundMovie] = useState(null)
-  const navigate = useNavigate();
+
 
   const findMovie = async (title) => {
     try {
       const response = await fetch(
-        `https://www.omdbapi.com/?apikey=${apiKey}&t=${title}`
+        `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=${title}`
       );
       const data = await response.json();
       setFoundMovie(data);
