@@ -33,22 +33,50 @@ export default class SignUpForm extends Component {
     render() {
         const disable = this.state.password !== this.state.confirm;
         return (
-          <div>
-            <div className="form-container">
-              <form autoComplete="off" onSubmit={this.handleSubmit}>
-                <label>Name</label>
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
-                <label>Email</label>
-                <input type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
-                <label>Password</label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
-                <label>Confirm</label>
-                <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
-                <button type="submit" disabled={disable}>SIGN UP</button>
-              </form>
+<>
+<div className="container-fluid ps-md-0">
+          <div className="row g-0 align-items-center " >
+            <div className="d-none d-md-flex col-md-4 col-lg-6 banner-image justify-content-center align-items-center" >
+              <div className="container">
+                <div className="row justify-content-center align-items-center">
+                  <div className="col-md-9 col-lg-8 mx-auto " >
+                    <div className="section-header text-center">
+                      <h2 className="fw-bold display-3 text-white">All your favs in<span className="b-className-secondary"> ONE</span><br />place <span className="b-className-secondary">😊</span> <br /></h2><br />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="error-message">&nbsp;{this.state.error}</p>
+            <div className="col-md-8 col-lg-6" style={{backgroundColor:"white"}}>
+              <div className="login d-flex align-items-center py-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-9 col-lg-8 mx-auto">
+                      <h3 className="login-heading mb-4">Sign Up</h3>
+                      <form autoComplete="off" onSubmit={this.handleSubmit}>
+                        <div className="form-floating mb-3">
+                 
+                Name:<input className="form-control line mb-3"  type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
+              Email: <input className="form-control line mb-3" type="email" name="email" value={this.state.email} onChange={this.handleChange} required />
+               Password:
+                <input className="form-control line mb-3" type="password" name="password" value={this.state.password} onChange={this.handleChange} required />
+            Confirm:
+                <input className="form-control line mb-3"  type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
+                <input className="btn btn-primary btn-block"  type="submit"  value="Submit" disabled={disable}/>
+                          <div className="text-center">
+                            <a className="small" href="/user/login">Have an account? Log In</a>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+
+          </>
         );
       }
 }
