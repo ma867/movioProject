@@ -47,7 +47,7 @@ export default class SignUpForm extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-8 col-lg-6" style={{backgroundColor:"white"}}>
+            <div className="col-md-8 col-lg-6" >
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
@@ -64,7 +64,7 @@ export default class SignUpForm extends Component {
                 <input className="form-control line mb-3"  type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
                 <input className="btn btn-primary btn-block"  type="submit"  value="Submit" disabled={disable}/>
                           <div className="text-center">
-                            <a className="small" href="/user/login">Have an account? Log In</a>
+                            <p  className="small">Have an account? Log In</p>
                           </div>
                         </div>
                       </form>

@@ -38,7 +38,7 @@ export default function LoginForm ({ setUser }) {
                 </div>
               </div>
             </div>
-            <div className="col-md-8 col-lg-6" style={{backgroundColor:"white"}}>
+            <div className="col-md-8 col-lg-6" >
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
@@ -50,7 +50,7 @@ export default function LoginForm ({ setUser }) {
     Password: <input className=" form-control line mb-3" type='password' name='password' value={credentials.password} onChange={handleChange} required />
           <input className="btn btn-primary btn-block" type='submit' value="Login"/>
                           <div className="text-center">
-                            <a className="small" href="/user/signup">Don't have an account? Sign up!</a>
+                            <p  className="small" >Don't have an account? Sign up!</p>
                           </div>
                         </div>
                       </form>

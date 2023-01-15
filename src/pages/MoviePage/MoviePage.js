@@ -214,13 +214,15 @@ export default function MoviePage({ username, user }) {
                         <input className="btn btn-primary btn-block" type="submit" value="Update" />
                       </form>
                     </div>
+                    <br />
                   </>
 
                   :
+                  <>
                   <div key={userReview._id} className="review">
 
                     <div id="left-side">
-                      <h1>{userReview.rating}<span className='ten-rating'>/10</span></h1>
+                      <h1>🔥 {userReview.rating}<span className='ten-rating'>/10</span></h1>
 
                     </div>
                     <div id="right-side">
@@ -233,6 +235,7 @@ export default function MoviePage({ username, user }) {
                     </div>
 
                   </div>
+                     <br /></>
                 :
                 <>
                   <div id="review-form">
@@ -246,6 +249,7 @@ export default function MoviePage({ username, user }) {
                       <input className="btn btn-primary btn-block" type="submit" value="Submit" />
                     </form>
                   </div>
+                  <br />
                 </>
             }
 
@@ -263,7 +267,7 @@ export default function MoviePage({ username, user }) {
         
                         <div key={review._id} className="review">
                           <div id="left-side">
-                            <h1>{review.rating}<span className='ten-rating'>/10</span></h1>
+                            <h1>🔥 {review.rating}<span className='ten-rating'>/10</span></h1>
 
                           </div>
                           <div id="right-side">
