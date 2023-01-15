@@ -1,5 +1,13 @@
-# Getting Started with Create React App
+# Movi0
 
+## ERD Diagram
+[Imgur](https://i.imgur.com/gB76T6Y.png)
+
+## Trello Board
+[Link](https://trello.com/b/qJGs7XM9/unit-3-project)
+
+
+# Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
