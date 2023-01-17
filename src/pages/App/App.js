@@ -16,9 +16,23 @@ function App() {
     const [user, setUser] = useState(getUser())
     const [classicMovies, setClassicMovies] = useState([])
     const [newMovies, setNewMovies] = useState([])
+    const [userReviews, setUserReviews] = useState(null)
  
  
 
+
+    const getUserReviews = async () => {
+        try {
+          const response = await fetch(`/api/reviews/user/${user._id}`)
+          const data = await response.json()
+  
+          console.log(data[0])
+
+          setUserReviews(data)
+        } catch (error) {
+          console.error(error)
+        }
+      }
     const getOldMovies = async () => {
         try {
             const response = await fetch('https://imdb-top-100-movies.p.rapidapi.com/', {
@@ -59,6 +73,7 @@ function App() {
     useEffect(() => {
         getOldMovies()
         getNewMovies()
+        getUserReviews()
     }, [])
 
 
@@ -70,7 +85,7 @@ function App() {
                     <>
 
                         <Routes>
-                            <Route path="/home" element={<MainPage classicMovies={classicMovies} newMovies={newMovies} />} />
+                            <Route path="/" element={<MainPage username={user._id} user={user} classicMovies={classicMovies} newMovies={newMovies} userReviews={userReviews}/>} />
                             <Route path="/movie/:id" element={<MoviePage username={user._id} user={user} />} />
                           
                         </Routes>

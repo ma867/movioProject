@@ -13,8 +13,8 @@ export default function Footer() {
 
             <div>
                 <h1>Follow Us</h1><br />
-                <span>movi-o</span><br />
-                <span>movi-o</span>
+                <span><i className="fab fa-twitter mr-2"/> movi-o</span><br />
+                <span><i className="fab fa-instagram mr-2"/> movi-o</span>
             </div>
         </div>
 

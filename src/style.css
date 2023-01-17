@@ -20,6 +20,7 @@ body {
   display: flex;
   justify-content: center;
   height: 100vh;
+  margin-bottom: 100px;
 }
 
 
@@ -37,7 +38,7 @@ body {
   background-color: #fff;
   display: flex;
   flex-direction: row;
-  height: 50px;
+  height: 70px;
   justify-content: space-between;
   padding: 0 100px;
 }
@@ -49,10 +50,18 @@ body {
 
 #nav-bar a {
   color: #333;
-  font-weight: bold;
   text-decoration: none;
 }
 
+#login-container{
+  height:100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-image: url("https://i.imgur.com/7Yw9ekm.jpg");
+  background-size: cover;
+  background-position: center;
+}
 #header {
   align-items: center;
   /* background-color: #000; */
@@ -96,7 +105,9 @@ a{
   box-shadow: 0 0 170px 0 rgba(0,0,0,.1);
   padding: 50px;
   width: 1200px;
-  height: 880px;
+
+  height: 1100px;
+  
 
 }
 .full-width{
@@ -248,7 +259,7 @@ margin-bottom: 20px;
   transform: translate(-50%,0);
   position: absolute;
   bottom: 10px;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-shadow: 1px 1px 0 rgba(0,0,0,.1);
 }
 
@@ -349,7 +360,10 @@ font-size: 10px;
 
 
 }
-#top-ten-movies {
+
+
+
+#top-ten-movies, #recently-reviewed {
 
   display: flex;
   flex-direction: row;
@@ -359,14 +373,21 @@ font-size: 10px;
   padding-top:15px;
 }
 
-#top-ten-movies div {
+#recently-reviewed{
+  width: 100%;
+  justify-content: left;
+  gap:20px;
+  
+
+}
+#top-ten-movies div, #recently-reviewed div {
   border-radius: 8px;
   font-size: 12px;
   height: 170px;
   width: 120px;
 }
 
-#top-ten-movies div span {
+#top-ten-movies div span ,  #recently-reviewed div span{
   display: block;
   margin-top: 8px;
   overflow: hidden;
@@ -383,7 +404,41 @@ font-size: 10px;
   height: 150px;
   width: 200px;
   box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+
 }
+
+#top-ten-movies .poster{
+
+  position: relative;
+  overflow: hidden;
+}
+#top-ten-movies .poster::before {
+  background-color: rgba(255,255,255,.3);
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+#top-ten-movies .poster.selected::before{
+background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #right-container {
   /* background-color: green; */

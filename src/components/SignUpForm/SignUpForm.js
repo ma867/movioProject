@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { signUp } from '../../utilities/users-service'
 import { Link } from 'react-router-dom'
 
-export default class SignUpForm extends Component {
+export default class SignUpForm extends Component{
     state = {
         name: '',
         email: '',
@@ -32,6 +32,7 @@ export default class SignUpForm extends Component {
 
     render() {
         const disable = this.state.password !== this.state.confirm;
+        const setVisible= this.props.setVisible
         return (
 <>
 <div className="container-fluid ps-md-0">
@@ -41,7 +42,7 @@ export default class SignUpForm extends Component {
                 <div className="row justify-content-center align-items-center">
                   <div className="col-md-9 col-lg-8 mx-auto " >
                     <div className="section-header text-center">
-                      <h2 className="fw-bold display-3 text-white">All your favs in<span className="b-className-secondary"> ONE</span><br />place <span className="b-className-secondary">😊</span> <br /></h2><br />
+                      <h2 className="fw-bold display-3">All your favs in<span className="b-className-secondary"> one</span><br />place <span className="b-className-secondary">😊</span> <br /></h2><br />
                     </div>
                   </div>
                 </div>
@@ -64,7 +65,7 @@ export default class SignUpForm extends Component {
                 <input className="form-control line mb-3"  type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
                 <input className="btn btn-primary btn-block"  type="submit"  value="Submit" disabled={disable}/>
                           <div className="text-center">
-                            <p  className="small">Have an account? Log In</p>
+                            <a  className="small" onClick={()=>{setVisible("login")}}>Have an account? Log In</a>
                           </div>
                         </div>
                       </form>

@@ -35,6 +35,19 @@ const dataController = {
       res.status(400).json('Bad Credentials')
     }
   }
+  ,
+  async update (req, res, next){
+    try{
+      const user = await User.findByIdAndUpdate(req.body._id, req.body, {new:true})
+      if (!user) throw new Error()
+      res.locals.data.user = user
+      res.locals.data.token = createJWT(user)
+      next()
+    }
+    catch(error){
+      res.status(400).json('NOPE NOT WORKING BBYGURL')
+    }
+  }
 }
 
 const apiController = {

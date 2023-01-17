@@ -17,14 +17,13 @@ export default function MoviePage({ username, user }) {
   const [userReview, setUserReview] = useState(null)
   const [newReview, setNewReview] = useState({
     movieId: id,
+    poster: '',
+    movieTitle: '',
     title: '',
     description: '',
     rating: 0,
     user: username
   })
-
-
-
 
   const getMovie = async () => {
     try {
@@ -37,6 +36,7 @@ export default function MoviePage({ username, user }) {
       })
       const data = await response.json()
       setMovie(data)
+      setNewReview({...newReview, poster: data.poster, movieTitle: data.title})
 
 
     } catch (error) {
@@ -197,15 +197,15 @@ export default function MoviePage({ username, user }) {
             <h3>Your review</h3>
 
             {
-              userReview ?
+              userReview && movie?
 
 
 
-                isUpdateReview ?
+                isUpdateReview && movie ?
                   <>
 
                     <div id="review-form">
-                      <form onSubmit={updateReview(userReview._id, { title: userReview.title, description: userReview.description, rating: userReview.rating })} >
+                      <form onSubmit={updateReview(userReview._id, { title: userReview.title, poster: movie.poster, movieTitle:movie.title, description: userReview.description, rating: userReview.rating })} >
                         <input className=" form-control line mb-3" type="text" name="title" onChange={handleChangeUpdate} defaultValue={userReview.title} />
                         <input className="form-control line mb-3" type="text" name="description" onChange={handleChangeUpdate} defaultValue={userReview.description} />
                         <input className=" form-control line mb-3" type="number" min="1" max="10" name="rating" onChange={handleChangeUpdate} defaultValue={userReview.rating} />
@@ -245,7 +245,7 @@ export default function MoviePage({ username, user }) {
                       <input className=" form-control  line mb-3" type="text" name="title" placeholder='Review title goes here' onChange={handleChange} value={newReview.title} />
                       <input className="form-control line mb-3" type="text" name="description" placeholder='Tell us about this movie' onChange={handleChange} value={newReview.description} />
                       <input className="form-control line mb-3" type="number" min="1" max="10" name="rating" placeholder='Whats your rating?' onChange={handleChange} value={newReview.rating} />
-
+    
                       <input className="btn btn-primary btn-block" type="submit" value="Submit" />
                     </form>
                   </div>

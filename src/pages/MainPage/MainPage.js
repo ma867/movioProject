@@ -3,17 +3,19 @@ import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
 import TopTenMovies from '../../components/HomePageComponents/TopTenMovies';
 import EditorsPicks from '../../components/HomePageComponents/EditorsPicks';
+import UserReviews from '../../components/HomePageComponents/UserReviews';
 import NewlyReleasedMovies from '../../components/HomePageComponents/NewlyReleasedMovies.js';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Banner from '../../components/HomePageComponents/Banner';
 
 
-export default function MainPage({ classicMovies, newMovies }) {
+export default function MainPage({ classicMovies, newMovies, userReviews, username }) {
 
 
   const [movieTitle, setMovieTitle] = useState('')
   const [foundMovie, setFoundMovie] = useState(null)
+  const [foundReviews, setFoundReviews] = useState([])
 
 
   const findMovie = async (title) => {
@@ -39,7 +41,6 @@ export default function MainPage({ classicMovies, newMovies }) {
   }
 
 
-
   return (
 
     <>
@@ -49,10 +50,10 @@ export default function MainPage({ classicMovies, newMovies }) {
 "/>
       <div className='body-container'>
         <div id="outside-container">
-          
-       
-        <EditorsPicks />
-         
+
+
+          <EditorsPicks />
+
 
           <div id="main-container" >
 
@@ -112,6 +113,9 @@ export default function MainPage({ classicMovies, newMovies }) {
               <NewlyReleasedMovies newMovies={newMovies} />
             </div>
           </div>
+
+          <UserReviews userReviews={userReviews} />
+
         </div>
 
 
@@ -119,7 +123,7 @@ export default function MainPage({ classicMovies, newMovies }) {
 
 
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 
