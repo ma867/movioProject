@@ -37,9 +37,9 @@ See the project on [Heroku](https://movio.herokuapp.com/
 
 In the project directory, you can run:
 
-### 1.  `npm i`
-### 2.  `npm run dev`
-### 3.  `npm run start`
+ 1.  `npm i`
+ 2.  `npm run dev`
+ 3.  `npm run start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
