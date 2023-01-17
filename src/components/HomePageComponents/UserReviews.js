@@ -15,7 +15,7 @@ export default function UserReviews({userReviews}){
 
     <div id="recently-reviewed">
     {
-          userReviews?
+          userReviews && userReviews.length?
           userReviews.map((review, i)=>{
             const { movieTitle, poster, movieId} = review
             return(

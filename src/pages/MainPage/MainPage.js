@@ -10,12 +10,25 @@ import { useEffect, useState } from 'react';
 import Banner from '../../components/HomePageComponents/Banner';
 
 
-export default function MainPage({ classicMovies, newMovies, userReviews, username }) {
+export default function MainPage({ classicMovies, newMovies, username }) {
 
 
   const [movieTitle, setMovieTitle] = useState('')
   const [foundMovie, setFoundMovie] = useState(null)
-  const [foundReviews, setFoundReviews] = useState([])
+  const [userReviews, setUserReviews] = useState([])
+ 
+ 
+
+
+  const getUserReviews = async () => {
+      try {
+        const response = await fetch(`/api/reviews/user/${username}`)
+        const data = await response.json()
+        setUserReviews(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
 
 
   const findMovie = async (title) => {
@@ -40,6 +53,10 @@ export default function MainPage({ classicMovies, newMovies, userReviews, userna
     findMovie(movieTitle)
   }
 
+  useEffect(() => {
+    getUserReviews()
+
+}, [])
 
   return (
 
@@ -123,7 +140,7 @@ export default function MainPage({ classicMovies, newMovies, userReviews, userna
 
 
       </div>
-      {/* <Footer /> */}
+
     </>
   )
 
