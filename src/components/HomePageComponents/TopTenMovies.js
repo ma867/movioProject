@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function TopTenMovies({ classicMovies }) {
     const [showCaseMovie, setShowCaseMovie] = useState(0)
-    const [selected, setSelected] = useState(false)
+    const [selected, setSelected] = useState(0)
     let genres = ""
     return (
         <>
@@ -19,7 +19,7 @@ export default function TopTenMovies({ classicMovies }) {
 
                                     <div key={id} id={i} onClick={() => { setShowCaseMovie(i) }}>
 
-                                        <div className="poster" style={{ backgroundImage: "url(" + `${image}` + ")" }}></div>
+                                        <div className={`poster ${showCaseMovie===i? "selected":""}`} style={{ backgroundImage: "url(" + `${image}` + ")" }}></div>
 
 
                                         <span >{title}</span>

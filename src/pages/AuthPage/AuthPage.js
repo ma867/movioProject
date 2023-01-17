@@ -10,28 +10,26 @@ export default function AuthPage(props){
 
     const [visible, setVisible] = useState("login")
     return(
-        <main>
+<>
 
-
+<NavBar/>
+<div id="login-container" >
             {
 
                 visible==="login"?
-                (<>
-                <NavBar/>
-                <LoginForm setUser={props.setUser} />
-                <p onClick={()=>{setVisible("signup")}}>Sign up?</p>
-
-                
-                </>):
-                (<>
-                 <NavBar/>
-                <SignUpForm setUser={props.setUser} />
-                <p onClick={()=>{setVisible("login")}}>Login?</p>
-
-                </>)
+                (
+        
+                <LoginForm setUser={props.setUser}  setVisible={setVisible}/>
+                 ):
+                (
+              
+                <SignUpForm setUser={props.setUser} setVisible={setVisible}/>
+              )
             }
-            
 
-        </main>
+            </div>
+            
+            </>
+   
     )
 }

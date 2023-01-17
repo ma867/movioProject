@@ -14,7 +14,7 @@ export default function NavBar() {
   </div>
 
   <div id="nav-links">
-    <a  href="">Home</a>
+     <Link to="/">Home</Link>
     <a href=""  onClick={() => { logOut() }}>Logout</a>
   </div>
 </div>
