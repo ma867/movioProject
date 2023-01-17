@@ -1,9 +1,6 @@
 # Movio
 This application is my personal reiteration of movie review platform Rotten Tomatoes.
 
-### ERD Diagram
-[Imgur](https://i.imgur.com/gB76T6Y.png)
-
 ### Trello Board
 [Link](https://trello.com/b/qJGs7XM9/unit-3-project)
 
