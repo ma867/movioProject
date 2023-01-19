@@ -5,7 +5,7 @@ This application is my personal reiteration of movie review platform Rotten Toma
 [Link](https://trello.com/b/qJGs7XM9/unit-3-project)
 
 ### Live Link
-See the project on [Heroku](https://movio.herokuapp.com/
+See the project on [Heroku](https://movio.herokuapp.com/)
 
 ### Technologies\Resources Used:
 * JavaScript
