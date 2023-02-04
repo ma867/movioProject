@@ -18,7 +18,9 @@ const userSchema = new Schema({
     minLength: 3,
     required: true
   },
-  movies: [{type: Schema.Types.ObjectId, ref: "Review"}]
+  movies: [{type: Schema.Types.ObjectId, ref: "Review"}],
+  description: {type: String, default: "Not Provided"},
+  image: {type: String, default:"https://i.imgur.com/50GKB1K.png"}
 
 }, {
   timestamps: true,

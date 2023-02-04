@@ -74,6 +74,20 @@ const dataController = {
         next()
       }
     })
+    .sort({_id:-1}).limit(8)
+    
+  },
+  userReviewUnlimitedIndex (req, res, next) {
+    Review.find({ user: req.params.username}, (err, foundReviews) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.reviews = foundReviews
+        next()
+      }
+    })
     .sort({_id:-1})
     
   },

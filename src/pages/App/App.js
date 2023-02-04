@@ -3,6 +3,7 @@
 import { getUser } from '../../utilities/users-service';
 import MainPage from '../MainPage/MainPage';
 import MoviePage from '../MoviePage/MoviePage';
+import ProfilePage from '../ProfilePage/ProfilePage'
 import AuthPage from '../AuthPage/AuthPage'
 import { useState, useEffect } from 'react';
 
@@ -70,7 +71,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<MainPage username={user._id} user={user} classicMovies={classicMovies} newMovies={newMovies} />} />
                             <Route path="/movie/:id" element={<MoviePage username={user._id} user={user} />} />
-                          
+                          <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} getUser={getUser}/>}/>
                         </Routes>
                     </>
                     :

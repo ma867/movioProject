@@ -10,6 +10,8 @@ router.get('/movie/:id', dataController.reviewIndex, apiController.index)
 
 // Index /api/reviews/user/:username
 router.get('/user/:username', dataController.userReviewIndex, apiController.index)
+router.get('/user/unlimited/:username', dataController.userReviewUnlimitedIndex, apiController.index)
+
 
 // Index /api/reviews/movie/${id}/excludeUser/${username}
 router.get('/movie/:id/excludeUser/:username', dataController.reviewExcludeUserIndex, apiController.index)

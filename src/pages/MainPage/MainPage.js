@@ -63,21 +63,15 @@ export default function MainPage({ classicMovies, newMovies, username }) {
     <>
 
       <NavBar />
-      <Banner title="Only the best for you" description="Movio's mission is to help consumers make an informed decision about how to spend their time and money on entertainment. We believe that multiple opinions are better than one, user voices can be as important as critics, and opinions must be scored to be easy to use. - sourced from metacritic        
-"/>
+      <Banner title="Only the best for you" description="Multiple opinions are better than one, user voices can be as important as critics."/>
       <div className='body-container'>
         <div id="outside-container">
 
 
-          <EditorsPicks />
+          <EditorsPicks page="main"/>
 
 
           <div id="main-container" >
-
-
-
-
-
 
             <div id="left-container">
 
@@ -108,7 +102,7 @@ export default function MainPage({ classicMovies, newMovies, username }) {
                           <div id="search-movie-info">
                             <div>{foundMovie.Genre} </div>
 
-                            {foundMovie.Released.slice(-4)}
+                            {foundMovie.Released.slice(-4)} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             {foundMovie.imdbRating}/10
 
                           </div>
@@ -131,7 +125,7 @@ export default function MainPage({ classicMovies, newMovies, username }) {
             </div>
           </div>
 
-          <UserReviews userReviews={userReviews} />
+          <UserReviews userReviews={userReviews} page="main"/>
 
         </div>
 

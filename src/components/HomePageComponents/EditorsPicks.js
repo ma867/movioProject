@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 
-export default function  EditorsPicks(props) {
+export default function  EditorsPicks({page}) {
 
     const navigate = useNavigate()
 
@@ -9,7 +9,12 @@ export default function  EditorsPicks(props) {
 
     }
     return(<>
-     <h3>Editor's Picks</h3>
+    {
+        page !== "profile"?
+        <h3>Editor's Picks</h3>
+        :""
+    }
+     
     <div id="middle-container">
          
          

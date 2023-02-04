@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-export default function UserReviews({userReviews}){
+export default function UserReviews({userReviews, page}){
     const navigate = useNavigate()
     const handleRedirect = (id)=>{
         navigate(`/movie/${id}`)
@@ -8,8 +8,13 @@ export default function UserReviews({userReviews}){
 
     return(
         <>
-
+{
+    page === 'main'?
 <h3>Recently Reviewed</h3>
+:
+<h2>Recently Reviewed</h2>
+}
+
 {/* 
 <div id="user-reviews-container"> */}
 

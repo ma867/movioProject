@@ -208,8 +208,8 @@ margin-bottom: 20px;
 }
 #general-movie-info{
   width: 750px;
-
 }
+
 #general-movie-stats{
   color: #afadad;
   display: flex;
@@ -232,6 +232,14 @@ margin-bottom: 20px;
   width: 280px;
   box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
 
+}
+#general-profile-image{
+  margin-right: 50px;
+  background-size: cover;
+  border-radius: 6px;
+  height: 300px;
+  width: 280px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
 }
 #movie-image{
   background-size: cover;

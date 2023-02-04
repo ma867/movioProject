@@ -296,7 +296,7 @@ export default function MoviePage({ username, user }) {
             </div>
           </div>
           <br />
-          <EditorsPicks />
+          <EditorsPicks page="movie" />
 
 
 

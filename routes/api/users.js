@@ -6,6 +6,9 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 router.post('/', dataController.create, apiController.auth)
 router.post('/login', dataController.login, apiController.auth)
 router.get('/check-token', ensureLoggedIn, checkToken)
-router.put('/:id', dataController.update, apiController.auth)
+router.get('/', dataController.index, apiController.index)
+router.put('/:id', dataController.update, apiController.show)
+router.get('/:id', dataController.show, apiController.show)
+
 
 module.exports = router
