@@ -5,8 +5,10 @@ import { UploadButton } from "react-uploader";
 import UserReviews from "../../components/HomePageComponents/UserReviews"
 import NavBar from '../../components/NavBar/NavBar'
 import Banner from '../../components/HomePageComponents/Banner'
+import ProfileBanner from '../../components/ProfilePageComponents/Banner';
+import ReviewComments from "../../components/ProfilePageComponents/ReviewComments";
 import EditorsPicks from "../../components/HomePageComponents/EditorsPicks"
-export default function ProfilePage({user, setUser, getUser}){
+export default function ProfilePage({userId}){
 
     const [userReviews, setUserReviews] = useState([])
     const [allUserReviews, setAllUserReviews] = useState([])
@@ -16,10 +18,27 @@ export default function ProfilePage({user, setUser, getUser}){
       name: "",
       description: "",
     });
+    const [user, setUser] = useState([])
 
+    const getUser = async() =>{
+      try{
+          const response = await fetch(`/api/users/${userId}`,{
+              method:"GET",
+              headers:{
+                  "Content-Type": "application/json"
+              }
+          })
+          const data = await response.json()
+          setUser(data)
+      }
+      catch(error){
+          console.error(error)
+
+      }
+  }
     const getUserReviews = async() =>{
         try{
-            const response = await fetch(`/api/reviews/user/${user._id}`,{
+            const response = await fetch(`/api/reviews/user/${userId}`,{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -35,7 +54,7 @@ export default function ProfilePage({user, setUser, getUser}){
     }
     const getAllUserReviews = async() =>{
         try{
-            const response = await fetch(`/api/reviews/user/unlimited/${user._id}`,{
+            const response = await fetch(`/api/reviews/user/unlimited/${userId}`,{
                 method:"GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -53,7 +72,7 @@ export default function ProfilePage({user, setUser, getUser}){
 
     const updateUser = async (updatedData) => {
         try {
-          const response = await fetch(`/api/users/${user._id}`, {
+          const response = await fetch(`/api/users/${userId}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -71,14 +90,13 @@ export default function ProfilePage({user, setUser, getUser}){
     
       }
      useEffect(()=>{
+      getUser()
         getUserReviews()
         getAllUserReviews()
    
      }, [])
 
-     useEffect(()=>{
-        getUser()
-     },[user])
+  
 
    
      const uploader = Uploader({
@@ -92,7 +110,7 @@ export default function ProfilePage({user, setUser, getUser}){
        images: {
          crop: true,
          cropShape: "circ", // "rect" also supported.
-         cropRatio: 1 / 1   // "1" is enforced for "circ".
+         cropRatio: 1 / 1   
        }
      } }
    
@@ -116,6 +134,7 @@ export default function ProfilePage({user, setUser, getUser}){
         try {
           const updatedDataCopy = { ...updatedData, image };
            updateUser(updatedDataCopy) 
+           setEdit(false)
 
         } catch (error) {
           console.error(error)
@@ -144,43 +163,36 @@ export default function ProfilePage({user, setUser, getUser}){
 
 
 
-                 {user?<>   <div id="general-movie-title">
-                      <h1>{user.name}</h1>
-                      <h1>{userReviews.length}<span className='ten-rating'>/∞</span></h1>
-                    </div>
-                    <div id="general-movie-stats">
-                      <h2>Joined {user.createdAt.slice(0,4)} </h2>
-                    </div>
-                    <br />
-                    <h2>About Me</h2>
+                {
+                 user && !edit ?
+                 <ProfileBanner user={user} userReviews={userReviews} setEdit={setEdit}/>
 
-                    lorem ipsum
-                    <br />
-                    {/* <button onClick={()=>{setEdit(true)}}>Edit Profile</button> */}
-                    </>
-                    
-                    :"nope"}
-{/* 
+                    :""} 
+
                     {
                     edit?
                     (
                         <div id="review-form">
                         <form onSubmit={handleSubmit} >
-                          <input className=" form-control line mb-3" type="text" name="name" onChange={handleChange} defaultValue={updatedData.title} />
-                          <input className="form-control line mb-3" type="text" name="description" onChange={handleChange} defaultValue={updatedData.description} />
+                          Profile Name: <input className=" form-control line mb-3" type="text" name="name" onChange={handleChange} defaultValue={updatedData.title} />
+                          Description: <input className="form-control line mb-3" type="text" name="description" onChange={handleChange} defaultValue={updatedData.description} />
+                          <br />
                           <UploadButton uploader={uploader} options={options} onComplete={(files) => setImage(files.map((x) => x.fileUrl).join("\n"))} >
                   {({ onClick }) => ( <button className="btn btn-primary btn-block"  onClick={onClick}>Upload a Profile Photo</button> )}
-               </UploadButton>
+               </UploadButton><br /><br /> 
                           <input className="btn btn-primary btn-block" type="submit" value="Update" />
+                          <button className="btn btn-danger btn-block"  onClick={()=>{setEdit(false)}}>Cancel</button>
 
                         </form>
                       </div>
 
 
                     ):
-                    ""
+                    <>
+                    <button className="btn btn-primary btn-block"  onClick={()=>{setEdit(true)}}>Edit Profile</button>
+                    </>
 
-                    } */}
+                    }
 
                   </div>
 
@@ -192,28 +204,9 @@ export default function ProfilePage({user, setUser, getUser}){
             <h2>All Reviews</h2>
             {
     allUserReviews && allUserReviews.length?
-            userReviews.map((userReview)=>{
-                return(
-                    <>
-                    <br />
-                    <div key={userReview._id} className="review">
+    <ReviewComments userReviews={userReviews} allUserReviews={allUserReviews}/>
   
-                      <div id="left-side">
-                        <h1>🔥 {userReview.rating}<span className='ten-rating'>/10</span></h1>
-  
-                      </div>
-                      <div id="right-side">
-                        <h5>{userReview.movieTitle}</h5>
-                        <h6>"{userReview.title}"</h6>
-                        <p>{userReview.description}</p>
-  
-                    
-                      </div>
-  
-                    </div>
-                     </>
-                )
-            })
+
     :
     <>
   <p>"You have yet to leave a Review. Checkout our editor's picks and get started!"</p>
