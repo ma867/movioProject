@@ -3,7 +3,7 @@ const Review = require('../../models/review')
 
 const dataController = {
   // Index,
-  index(req, res, next) {
+  index (req, res, next) {
     Review.find({}, (err, foundReviews) => {
       if (err) {
         res.status(400).send({
@@ -16,7 +16,7 @@ const dataController = {
     })
   },
 
-  reviewIndex(req, res, next) {
+  reviewIndex (req, res, next) {
     Review.find({ movieId: req.params.id }, (err, foundReviews) => {
       if (err) {
         res.status(400).send({
@@ -28,10 +28,9 @@ const dataController = {
       }
     })
       .sort({ _id: -1 })
-
   },
 
-  reviewExcludeUserIndex(req, res, next) {
+  reviewExcludeUserIndex (req, res, next) {
     Review.find({
       $and: [
         { movieId: req.params.id }, { user: { $ne: req.params.username } }
@@ -46,12 +45,11 @@ const dataController = {
         next()
       }
     })
-      .populate("user")
+      .populate('user')
       .sort({ _id: -1 })
-
   },
 
-  userReviewShow(req, res, next) {
+  userReviewShow (req, res, next) {
     Review.findOne({ movieId: req.params.id, user: req.params.username }, (err, foundReviews) => {
       if (err) {
         res.status(400).send({
@@ -63,10 +61,9 @@ const dataController = {
       }
     })
       .sort({ _id: -1 })
-
   },
 
-  userReviewIndex(req, res, next) {
+  userReviewIndex (req, res, next) {
     Review.find({ user: req.params.username }, (err, foundReviews) => {
       if (err) {
         res.status(400).send({
@@ -78,9 +75,8 @@ const dataController = {
       }
     })
       .sort({ _id: -1 }).limit(8)
-
   },
-  userReviewUnlimitedIndex(req, res, next) {
+  userReviewUnlimitedIndex (req, res, next) {
     Review.find({ user: req.params.username }, (err, foundReviews) => {
       if (err) {
         res.status(400).send({
@@ -92,10 +88,9 @@ const dataController = {
       }
     })
       .sort({ _id: -1 })
-
   },
   // Destroy
-  destroy(req, res, next) {
+  destroy (req, res, next) {
     Review.findByIdAndDelete(req.params.id, (err, deletedReview) => {
       if (err) {
         res.status(400).send({
@@ -108,8 +103,7 @@ const dataController = {
     })
   },
   // Update
-  update(req, res, next) {
-
+  update (req, res, next) {
     Review.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedReview) => {
       if (err) {
         res.status(400).send({
@@ -122,8 +116,7 @@ const dataController = {
     })
   },
   // Create
-  create(req, res, next) {
-
+  create (req, res, next) {
     Review.create(req.body, (err, createdReview) => {
       if (err) {
         res.status(400).send({
@@ -137,7 +130,7 @@ const dataController = {
   },
   // Edit
   // Show
-  show(req, res, next) {
+  show (req, res, next) {
     Review.findById(req.params.id, (err, foundReview) => {
       if (err) {
         res.status(404).send({
@@ -153,10 +146,10 @@ const dataController = {
 }
 
 const apiController = {
-  index(req, res, next) {
+  index (req, res, next) {
     res.json(res.locals.data.reviews)
   },
-  show(req, res, next) {
+  show (req, res, next) {
     res.json(res.locals.data.review)
   }
 }

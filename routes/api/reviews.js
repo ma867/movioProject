@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const { dataController, apiController } = require('../../controllers/api/reviews')
 
-// add routes
 // Index /api/reviews
 router.get('/', dataController.index, apiController.index)
 // Index /api/reviews/movie/:id
@@ -11,7 +10,6 @@ router.get('/movie/:id', dataController.reviewIndex, apiController.index)
 // Index /api/reviews/user/:username
 router.get('/user/:username', dataController.userReviewIndex, apiController.index)
 router.get('/user/unlimited/:username', dataController.userReviewUnlimitedIndex, apiController.index)
-
 
 // Index /api/reviews/movie/${id}/excludeUser/${username}
 router.get('/movie/:id/excludeUser/:username', dataController.reviewExcludeUserIndex, apiController.index)
@@ -27,6 +25,5 @@ router.put('/:id', dataController.update, apiController.show)
 router.post('/', dataController.create, apiController.show)
 // Show /api/reviews/:id
 router.get('/:id', dataController.show, apiController.show)
-
 
 module.exports = router

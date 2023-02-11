@@ -10,5 +10,4 @@ router.get('/', dataController.index, apiController.index)
 router.put('/:id', dataController.update, apiController.show)
 router.get('/:id', dataController.show, apiController.show)
 
-
 module.exports = router

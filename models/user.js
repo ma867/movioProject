@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const SALT_ROUNDS = 6
 
 const userSchema = new Schema({
-  name: {type: String, required: true},
+  name: { type: String, required: true },
   email: {
     type: String,
     unique: true,
@@ -18,9 +18,9 @@ const userSchema = new Schema({
     minLength: 3,
     required: true
   },
-  movies: [{type: Schema.Types.ObjectId, ref: "Review"}],
-  description: {type: String, default: "Not Provided"},
-  image: {type: String, default:"https://i.imgur.com/50GKB1K.png"}
+  movies: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
+  description: { type: String, default: 'Not Provided' },
+  image: { type: String, default: 'https://i.imgur.com/50GKB1K.png' }
 
 }, {
   timestamps: true,

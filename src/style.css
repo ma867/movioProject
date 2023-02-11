@@ -186,7 +186,7 @@ a{
   margin-bottom: 20px;
 
 }
-.review .buttons{
+.review .buttons, .profile-button{
   display: flex;
   align-items: flex-end;
   justify-content: right;

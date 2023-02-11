@@ -27,49 +27,48 @@ const dataController = {
 
       const match = await bcrypt.compare(req.body.password, user.password)
       if (!match) throw new Error()
-      
+
       res.locals.data.user = user
       res.locals.data.token = createJWT(user)
       next()
     } catch {
       res.status(400).json('Bad Credentials')
     }
-  }
-  ,
-  update(req, res, next) {
-      User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedUser) => {
-          if (err) {
-            res.status(400).send({
-              msg: err.message,
-            });
-          } else {
-            res.locals.data.user = updatedUser;
-            next();
-          }
-        }
-      );
   },
-  index(req, res, next) {
+  update (req, res, next) {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedUser) => {
+      if (err) {
+        res.status(400).send({
+          msg: err.message
+        })
+      } else {
+        res.locals.data.user = updatedUser
+        next()
+      }
+    }
+    )
+  },
+  index (req, res, next) {
     User.find({}, (err, foundUsers) => {
       if (err) {
-        console.error(err);
-        res.status(400).send(err);
+        console.error(err)
+        res.status(400).send(err)
       } else {
-        res.locals.data.users = foundUsers;
-        next();
+        res.locals.data.users = foundUsers
+        next()
       }
-    });
+    })
   },
-  show(req, res, next) {
+  show (req, res, next) {
     User.findById(req.params.id, (err, foundUser) => {
       if (err) {
-        console.error(err);
-        res.status(400).send(err);
+        console.error(err)
+        res.status(400).send(err)
       } else {
-        res.locals.data.user = foundUser;
-        next();
+        res.locals.data.user = foundUser
+        next()
       }
-    });
+    })
   }
 }
 
@@ -77,12 +76,12 @@ const apiController = {
   auth (req, res) {
     res.json(res.locals.data.token)
   },
-  index(req, res, next) {
-    res.json(res.locals.data.users);
+  index (req, res, next) {
+    res.json(res.locals.data.users)
   },
-  show(req, res, next) {
-    res.json(res.locals.data.user);
-  },
+  show (req, res, next) {
+    res.json(res.locals.data.user)
+  }
 }
 
 module.exports = {

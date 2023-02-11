@@ -1,6 +1,6 @@
 import { getToken } from './users-service'
 
-//async function, params dont come from props, its used globally
+// async function, params dont come from props, its used globally
 
 export default async function sendRequest (url, method = 'GET', payload = null) {
   // Fetch takes an optional options object as the 2nd argument

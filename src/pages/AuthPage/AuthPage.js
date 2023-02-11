@@ -1,35 +1,33 @@
 // AuthPage.js
 
-import SignUpForm from "../../components/SignUpForm/SignUpForm"
-import LoginForm from "../../components/LoginForm/LoginForm"
-import NavBar from "../../components/NavBar/NavBar"
-import Footer from "../../components/Footer/Footer"
-import { useState } from "react"
+import SignUpForm from '../../components/SignUpForm/SignUpForm'
+import LoginForm from '../../components/LoginForm/LoginForm'
+import NavBar from '../../components/NavBar/NavBar'
+import { useState } from 'react'
 
-export default function AuthPage(props){
+export default function AuthPage (props) {
+  const [visible, setVisible] = useState('login')
+  return (
+    <>
 
-    const [visible, setVisible] = useState("login")
-    return(
-<>
+      <NavBar />
+      <div id='login-container'>
+        {
 
-<NavBar/>
-<div id="login-container" >
-            {
+          visible === 'login'
+            ? (
 
-                visible==="login"?
-                (
-        
-                <LoginForm setUser={props.setUser}  setVisible={setVisible}/>
-                 ):
-                (
-              
-                <SignUpForm setUser={props.setUser} setVisible={setVisible}/>
+              <LoginForm setUser={props.setUser} setVisible={setVisible} />
               )
-            }
+            : (
 
-            </div>
-            
-            </>
-   
-    )
+              <SignUpForm setUser={props.setUser} setVisible={setVisible} />
+              )
+        }
+
+      </div>
+
+    </>
+
+  )
 }
