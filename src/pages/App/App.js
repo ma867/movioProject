@@ -71,7 +71,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<MainPage username={user._id} user={user} classicMovies={classicMovies} newMovies={newMovies} />} />
                             <Route path="/movie/:id" element={<MoviePage username={user._id} user={user} />} />
-                          <Route path="/profile" element={<ProfilePage userId={user._id} />}/>
+                          <Route path="/profile" element={<ProfilePage userId={user._id} originalUser={user} />}/>
                         </Routes>
                     </>
                     :

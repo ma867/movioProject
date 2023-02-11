@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import NavBar from "../../components/NavBar/NavBar"
 import Footer from '../../components/Footer/Footer';
 import Banner from '../../components/HomePageComponents/Banner';
+import ReviewContainer from "../../components/ReviewContainer/ReviewContainer";
 import EditorsPicks from '../../components/HomePageComponents/EditorsPicks';
 
 export default function MoviePage({ username, user }) {
@@ -36,7 +37,7 @@ export default function MoviePage({ username, user }) {
       })
       const data = await response.json()
       setMovie(data)
-      setNewReview({...newReview, poster: data.poster, movieTitle: data.title})
+      setNewReview({ ...newReview, poster: data.poster, movieTitle: data.title })
 
 
     } catch (error) {
@@ -142,14 +143,20 @@ export default function MoviePage({ username, user }) {
     setUserReview({ ...userReview, [e.target.name]: e.target.value })
   }
 
+  const emojiHandler = (rating) => {
+    if (rating === 10) {
+      return ""
+    }
+  }
+
   return (
 
     <>
-      <NavBar  />
+      <NavBar />
 
-      <Banner title="Movies" description=""/>
+      <Banner title="Movies" description="" />
       <div className='body-container full-width'>
-    
+
         <div id="outside-container-movie">
 
           <div id="general-container" >
@@ -197,7 +204,7 @@ export default function MoviePage({ username, user }) {
             <h3>Your review</h3>
 
             {
-              userReview && movie?
+              userReview && movie ?
 
 
 
@@ -205,12 +212,10 @@ export default function MoviePage({ username, user }) {
                   <>
 
                     <div id="review-form">
-                      <form onSubmit={updateReview(userReview._id, { title: userReview.title, poster: movie.poster, movieTitle:movie.title, description: userReview.description, rating: userReview.rating })} >
+                      <form onSubmit={updateReview(userReview._id, { title: userReview.title, poster: movie.poster, movieTitle: movie.title, description: userReview.description, rating: userReview.rating })} >
                         <input className=" form-control line mb-3" type="text" name="title" onChange={handleChangeUpdate} defaultValue={userReview.title} />
                         <input className="form-control line mb-3" type="text" name="description" onChange={handleChangeUpdate} defaultValue={userReview.description} />
                         <input className=" form-control line mb-3" type="number" min="1" max="10" name="rating" onChange={handleChangeUpdate} defaultValue={userReview.rating} />
-
-                        {/* <input className="action" type="submit" value="update" /> */}
                         <input className="btn btn-primary btn-block" type="submit" value="Update" />
                       </form>
                     </div>
@@ -218,24 +223,8 @@ export default function MoviePage({ username, user }) {
                   </>
 
                   :
-                  <>
-                  <div key={userReview._id} className="review">
+                  <ReviewContainer profile="self" review={userReview} user={user} setIsUpdateReview={setIsUpdateReview} deleteReview={deleteReview} />
 
-                    <div id="left-side">
-                      <h1>🔥 {userReview.rating}<span className='ten-rating'>/10</span></h1>
-
-                    </div>
-                    <div id="right-side">
-                      <h6>{userReview.title}</h6>
-                      <p>{userReview.description}</p>
-
-                      <button className="btn btn-danger" onClick={() => { deleteReview(userReview._id) }}>Delete</button>
-                      <button className="btn btn-primary" onClick={() => { setIsUpdateReview(true) }}>Edit </button>
-
-                    </div>
-
-                  </div>
-                     <br /></>
                 :
                 <>
                   <div id="review-form">
@@ -245,7 +234,7 @@ export default function MoviePage({ username, user }) {
                       <input className=" form-control  line mb-3" type="text" name="title" placeholder='Review title goes here' onChange={handleChange} value={newReview.title} />
                       <input className="form-control line mb-3" type="text" name="description" placeholder='Tell us about this movie' onChange={handleChange} value={newReview.description} />
                       <input className="form-control line mb-3" type="number" min="1" max="10" name="rating" placeholder='Whats your rating?' onChange={handleChange} value={newReview.rating} />
-    
+
                       <input className="btn btn-primary btn-block" type="submit" value="Submit" />
                     </form>
                   </div>
@@ -264,35 +253,19 @@ export default function MoviePage({ username, user }) {
 
 
                     return (
-        
-                        <div key={review._id} className="review">
-                          <div id="left-side">
-                            <h1>🔥 {review.rating}<span className='ten-rating'>/10</span></h1>
-
-                          </div>
-                          <div id="right-side">
-                            <h6>{review.title}</h6>
-                            <p>{review.description}</p>
-
-                          </div>
-
-
-
-                        </div>
-
-                   
+                      <ReviewContainer profile="other" review={review} user={user} setIsUpdateReview={setIsUpdateReview} deleteReview={deleteReview} />
                     )
-                    })
+                  })
 
 
 
-              
 
 
-              :
-              <h6>No reviews have been left yet.</h6>
 
-          }
+                  :
+                  <h6>No reviews have been left yet.</h6>
+
+              }
             </div>
           </div>
           <br />

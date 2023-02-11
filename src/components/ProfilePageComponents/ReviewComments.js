@@ -12,8 +12,7 @@ export default function ReviewComments({userReviews, allUserReviews}){
             <div key={userReview._id} className="review">
 
               <div id="left-side">
-                <h1>🔥 
-                    {userReview.rating}<span className='ten-rating'>/10</span></h1>
+                <h1>🔥 {userReview.rating}<span className='ten-rating'>/10</span></h1>
 
               </div>
               <div id="right-side">

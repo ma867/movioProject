@@ -8,15 +8,15 @@ import Banner from '../../components/HomePageComponents/Banner'
 import ProfileBanner from '../../components/ProfilePageComponents/Banner';
 import ReviewComments from "../../components/ProfilePageComponents/ReviewComments";
 import EditorsPicks from "../../components/HomePageComponents/EditorsPicks"
-export default function ProfilePage({userId}){
+export default function ProfilePage({userId, originalUser}){
 
     const [userReviews, setUserReviews] = useState([])
     const [allUserReviews, setAllUserReviews] = useState([])
     const [edit, setEdit]= useState(false)
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(originalUser.image);
     const [updatedData, setUpdatedData] = useState({
-      name: "",
-      description: "",
+      name: originalUser.name,
+      description: originalUser.description,
     });
     const [user, setUser] = useState([])
 

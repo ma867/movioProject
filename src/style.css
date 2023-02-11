@@ -74,12 +74,16 @@ body {
   width: 100%;
 }
 
-.ten-rating{
+.ten-rating, .read-more{
   color: rgb(13, 110, 253);
 }
 
 a{
-  text-decoration-style: none;
+  text-decoration: none;
+}
+
+.read-more{
+  cursor: pointer;
 }
 #header div {
   text-align: center;
@@ -172,28 +176,35 @@ a{
 }
 .review{
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   flex-direction:row;
-  align-items: center;
-  gap:20px;
+  align-items:flex-start;
+  gap:40px;
+  border-radius: 10px;
+  margin-top:10px;  
+  margin-bottom: 20px;
 
-border-radius: 10px;
-margin-top:10px;
-margin-bottom: 20px;
-
+}
+.review .buttons{
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
 }
 
 
 #left-side{
 
-  width:200px;
+  width:150px;
+  border-radius: 6px;
   text-align: center;
-  padding:10px;
+  background-size: cover;
+  /* padding:10px; */
   
 }
 #right-side{
-  width:600
+  width:850px;
+
 }
 
 #right-side button{
@@ -230,6 +241,15 @@ margin-bottom: 20px;
   border-radius: 6px;
   height: 400px;
   width: 280px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+
+}
+.general-user-image{
+  margin-right: 50px;
+  background-size: cover;
+  border-radius: 6px;
+  height: 150px;
+  width: 150px;
   box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
 
 }
@@ -350,12 +370,18 @@ flex-direction: column;
 
 
 }
-#movie-title, #general-movie-title{
+#movie-title, #general-movie-title, .review-title{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
+.review-rating-number{
+  font-size: 30px;
+  font-weight: 600;
+  min-width: 118px;
+  text-align: right;
+}
 #search-movie-info{
   margin-bottom: 5px;
   color: #cccccc;
